@@ -19,17 +19,17 @@ jobs:
       - name: Build Linux
         run: |
           go build -ldflags "-s -w" -trimpath -buildvcs=false -o envman .
-          ./envman completion bash > completions.bash
-          ./envman completion fish > completions.fish
-          ./envman completion zsh > completions.zsh
-          tar -czvf envman-linux-x86_64.tar.gz envman completions.* LICENSE README.md
+          ./envman completion bash > envman.bash
+          ./envman completion fish > envman.fish
+          ./envman completion zsh > _envman
+          tar -czvf envman-linux-x86_64.tar.gz envman envman.bash envman.fish _envman LICENSE README.md
       - name: Build Darwin ARM
         run: |
           GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w" -trimpath -buildvcs=false -o envman .
-          go run . completion bash > completions.bash
-          go run . completion fish > completions.fish
-          go run . completion zsh > completions.zsh
-          tar -czvf envman-darwin-arm64.tar.gz envman completions.* LICENSE README.md
+          go run . completion bash > envman.bash
+          go run . completion fish > envman.fish
+          go run . completion zsh > _envman
+          tar -czvf envman-darwin-arm64.tar.gz envman envman.bash envman.fish _envman LICENSE README.md
       - name: Upload artifacts
         if: github.event_name != 'release'
         uses: actions/upload-artifact@v4
