@@ -22,6 +22,8 @@ func Confirm(question string, defaultYes bool) bool {
 	}
 
 	input = strings.TrimSpace(strings.ToLower(input))
+	input = strings.ReplaceAll(input, "\r", "")
+	input = strings.ReplaceAll(input, "\n", "")
 	if input == "" {
 		return defaultYes
 	}
