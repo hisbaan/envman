@@ -22,9 +22,9 @@ jobs:
       - name: Build Darwin ARM
         run: |
           GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w" -trimpath -buildvcs=false -o envman .
-          ./envman completion bash > completions.bash
-          ./envman completion fish > completions.fish
-          ./envman completion zsh > completions.zsh
+          go run . completion bash > completions.bash
+          go run . completion fish > completions.fish
+          go run . completion zsh > completions.zsh
           tar -czvf envman-darwin-arm64.tar.gz envman completions.* LICENSE README.md
       - name: Upload artifacts
         if: github.event_name != 'release'
