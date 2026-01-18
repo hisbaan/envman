@@ -69,7 +69,7 @@ func GetActiveEnv(dirs []string) (string, error) {
 			}
 			return "", fmt.Errorf("error reading symlink %s: %w", dir+"/.env", err)
 		}
-		prefix := filepath.Join(dir + ".env.")
+		prefix := filepath.Join(dir, ".env.")
 		names = append(names, result[len(prefix):])
 	}
 
