@@ -65,9 +65,7 @@ func InitConfig() error {
 
 func GetViper() *viper.Viper {
 	once.Do(func() {
-		if v == nil {
-			InitConfig()
-		}
+		InitConfig()
 	})
 	return v
 }
